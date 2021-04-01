@@ -1,1 +1,3 @@
 rails new rails_vuejs_tutorials --database=postgresql
+
+rails webpacker:install:vue 
