@@ -1,0 +1,1 @@
+rails new rails_vuejs_tutorials --database=postgresql
