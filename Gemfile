@@ -43,6 +43,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'htmlbeautifier'
+  gem 'rubocop'
+  gem 'rubocop-rails'
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-packaging'
 end
 
 group :test do
