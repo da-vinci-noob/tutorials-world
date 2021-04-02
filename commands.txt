@@ -5,3 +5,8 @@ rails g controller Home index
 rails webpacker:install:vue 
 
 yarn add vue-turbolinks
+
+yarn global add prettier @prettier/plugin-ruby
+or
+yarn add -D prettier @prettier/plugin-ruby
+

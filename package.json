@@ -14,9 +14,11 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@prettier/plugin-ruby": "^1.5.5",
     "@tailwindcss/postcss7-compat": "^2.0.4",
     "autoprefixer": "^9",
     "postcss": "^7",
+    "prettier": "^2.2.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "webpack-dev-server": "^3.11.2"
   }
