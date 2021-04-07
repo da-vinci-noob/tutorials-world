@@ -7,12 +7,7 @@
           Tutorials
         </div>
         <div class="w-1/4 text-right">
-          <a
-            href=""
-            class="inline-block px-2 py-1 text-sm text-gray-200 transition duration-500 transform bg-indigo-600 rounded-lg hover:scale-110 hover:bg-indigo-800 whitespace-nowrap"
-          >
-            Add New
-          </a>
+          <slot name="add_new_link"></slot>
         </div>
       </div>
       <div>
