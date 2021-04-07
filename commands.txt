@@ -11,3 +11,6 @@ or
 yarn add -D prettier @prettier/plugin-ruby
 
 yarn add -D chokidar
+
+// Markdown Support
+yarn add @tailwindcss/typography

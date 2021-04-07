@@ -47,6 +47,7 @@ group :development do
   gem 'rubocop-rails'
   gem 'rubocop-performance', require: false
   gem 'rubocop-packaging'
+  gem 'pry'
 end
 
 group :test do
@@ -59,3 +60,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'redcarpet'
+gem 'coderay'
