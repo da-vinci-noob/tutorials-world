@@ -1,0 +1,45 @@
+<div class="container-block">
+  <div class="inside-container">
+
+    <main class="max-w-lg p-8 mx-auto my-10 bg-white rounded-lg shadow-2xl md:p-12">
+      <section>
+        <h3 class="text-2xl font-bold">Welcome to Tutorials World</h3>
+        <p class="pt-2 text-gray-600">Signup for an account.</p>
+      </section>
+
+      <section class="mt-10">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'flex flex-col'}) do |f| %>
+          <div class="pt-3 mb-6 bg-gray-200 rounded">
+            <label class="block mb-2 ml-3 text-sm font-bold text-gray-700" for="email">Name</label>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'w-full px-3 pb-3 text-gray-700 transition duration-500 bg-gray-200 border-b-4 border-gray-300 rounded focus:outline-none focus:border-purple-600' %>
+          </div>
+          <div class="pt-3 mb-6 bg-gray-200 rounded">
+            <label class="block mb-2 ml-3 text-sm font-bold text-gray-700" for="email">Email</label>
+            <%= f.email_field :email, autocomplete: "email", class: 'w-full px-3 pb-3 text-gray-700 transition duration-500 bg-gray-200 border-b-4 border-gray-300 rounded focus:outline-none focus:border-purple-600' %>
+          </div>
+          <div class="pt-3 mb-6 bg-gray-200 rounded">
+            <label class="block mb-2 ml-3 text-sm font-bold text-gray-700" for="password">Password
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+            </label>
+            <%= f.password_field :password, autocomplete: "new-password", class: 'w-full px-3 pb-3 text-gray-700 transition duration-500 bg-gray-200 border-b-4 border-gray-300 rounded focus:outline-none focus:border-purple-600' %>
+          </div>
+
+          <div class="pt-3 mb-6 bg-gray-200 rounded">
+            <label class="block mb-2 ml-3 text-sm font-bold text-gray-700" for="password">Password Confirmation</label>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'w-full px-3 pb-3 text-gray-700 transition duration-500 bg-gray-200 border-b-4 border-gray-300 rounded focus:outline-none focus:border-purple-600' %>
+          </div>
+
+          <%= f.submit "Sign up", class: 'block py-2 font-bold text-white transition duration-200 bg-purple-600 rounded shadow-lg hover:bg-purple-700 hover:shadow-xl' %>
+        <% end %>
+      </section>
+    </main>
+
+    <div class="max-w-lg mx-auto mt-12 mb-6 text-center">
+      <p class="text-black">Already have an account?
+        <%= link_to "Log in", new_session_path(resource_name), class: 'font-bold text-purple-700 hover:underline' %><br />
+      </p>
+    </div>
+  </div>
+</div>
