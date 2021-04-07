@@ -1,6 +1,12 @@
 <template>
   <div class="container-block">
     <div class="relative py-0 mt-10 inside-container">
+      <button
+        class="absolute top-0 left-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tl-xl rounded-br-xl"
+        onclick="window.history.back()"
+      >
+        BACK
+      </button>
       <div>
         <span
           class="block text-2xl font-bold text-center lg:text-3xl xl:text-5xl"
