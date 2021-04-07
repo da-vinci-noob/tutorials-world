@@ -10,3 +10,4 @@ yarn global add prettier @prettier/plugin-ruby
 or
 yarn add -D prettier @prettier/plugin-ruby
 
+yarn add -D chokidar
