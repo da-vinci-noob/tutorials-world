@@ -14,6 +14,15 @@
           {{ language.title }}
         </span>
       </div>
+      <div class="mt-2 text-center lg:mt-4">
+        <input
+          class="px-4 py-1 rounded-lg focus:outline-none focus:ring-indigo-400 focus:ring-2 active:ring-indigo-400 active:ring-2"
+          type="text"
+          autofocus
+          v-model="searchQuery"
+          placeholder="Search"
+        />
+      </div>
       <div class="mt-8 space-y-2">
         <div
           v-for="tutorial in resultQuery"
@@ -72,7 +81,20 @@ export default {
   },
   computed: {
     resultQuery() {
+      if (this.searchQuery) {
+        return this.language.tutorials.filter((item) => {
+          return this.searchQuery
+            .toLowerCase()
+            .split(' ')
+            .every(
+              (v) =>
+                item.title.toLowerCase().includes(v) ||
+                item.body.toLowerCase().includes(v)
+            )
+        })
+      } else {
         return this.language.tutorials
+      }
     }
   },
   methods: {
