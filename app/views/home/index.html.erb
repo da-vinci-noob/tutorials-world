@@ -1,3 +1,13 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-<app></app>
+<homepage>
+  <div slot="language_buttons" class="space-y-2">
+    <% @languages.each do | language | %>
+      <%= link_to language.title, language_path(language), class: 'inline-block btn-link btn-link-primary mr-4' %>
+    <% end %>
+  </div>
+
+  <div slot="others_buttons" class="space-y-2">
+    <% @others.each do | other | %>
+      <%= link_to other.title, language_path(other), class: 'inline-block btn-link btn-link-primary mr-4' %>
+    <% end %>
+  </div>
+</homepage>
