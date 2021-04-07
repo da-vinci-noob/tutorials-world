@@ -1,0 +1,9 @@
+<show-tutorial :language="<%= @language_w_tutorials.to_json %>">
+
+  <% @language.tutorials.each do |tutorial| %>
+    <div slot="tutorial_body_<%= tutorial.id %>" class="prose lg:prose-lg">
+      <%= markdown(tutorial.body) %>
+    </div>
+  <% end %>
+
+</show-tutorial>
