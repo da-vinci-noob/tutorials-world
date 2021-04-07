@@ -1,4 +1,5 @@
 class LanguagesController < ApplicationController
+  before_action :set_language, only: [:show]
 
   def create
     @language = Language.new(language_params)
@@ -6,11 +7,17 @@ class LanguagesController < ApplicationController
   end
 
   def show
+    @language_w_tutorials =
+      @language.as_json(include: { tutorials: { methods: :isOpen } })
   end
 
   private
 
   def language_params
     params.require(:language).permit(:title)
+  end
+
+  def set_language
+    @language = Language.eager_load(:tutorials).find(params[:id])
   end
 end
