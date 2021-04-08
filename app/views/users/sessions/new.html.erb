@@ -24,12 +24,7 @@
               <%= f.label :remember_me %>
             </div>
           <% end %>
-          <div class="flex justify-end">
-            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-              <%= link_to "Forgot your password?", new_password_path(resource_name), class: 'mb-6 text-sm text-purple-600 hover:text-purple-700 hover:underline' %><br />
-            <% end %>
-          </div>
-          <%= f.submit "Log in", class: 'block py-2 font-bold text-white transition duration-200 bg-purple-600 rounded shadow-lg hover:bg-purple-700 hover:shadow-xl' %>
+          <%= f.submit "Log in", class: 'mt-6 block py-2 font-bold text-white transition duration-200 bg-purple-600 rounded shadow-lg hover:bg-purple-700 hover:shadow-xl' %>
         <% end %>
       </section>
     </main>
