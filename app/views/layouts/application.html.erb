@@ -12,10 +12,13 @@
   </head>
 
   <body class="font-sans antialiased">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <div data-behavior="vue">
-      <%= yield %>
+    <div class="container-block">
+      <div class="relative inside-container">
+        <%= render "layouts/alerts" %>
+        <div data-behavior="vue">
+          <%= yield %>
+        </div>
+      </div>
     </div>
   </body>
 </html>
