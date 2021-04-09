@@ -8,7 +8,7 @@
   <%= link_to  "Your Tutorials", tutorials_path, class:"absolute top-0 right-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl" %>
   <% if current_user.admin? %>
     <div class="absolute right-0 mx-auto mt-2">
-      <%= link_to  "Requests", approval_path, class:"px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl" %>
+      <%= link_to  "Requests", requests_path, class:"px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl" %>
       <%= link_to  "Approvals", approval_path, class:"px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl" %>
     </div>
   <% else %>

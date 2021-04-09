@@ -137,12 +137,6 @@
                       class="w-full h-32 px-3 pb-3 text-gray-700 transition duration-500 bg-gray-200 border-b-4 border-gray-300 rounded focus:outline-none focus:border-purple-600"
                     />
                   </div>
-                  <button
-                    @click.prevent="updateRequest(index)"
-                    class="w-full px-2 py-2 my-4 font-bold text-white transition duration-200 bg-purple-600 rounded shadow-lg hover:bg-purple-700 hover:shadow-xl"
-                  >
-                    Completed
-                  </button>
                 </div>
               </div>
             </div>

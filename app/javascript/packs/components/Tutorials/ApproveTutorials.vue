@@ -26,8 +26,9 @@
             <span
               class="text-lg font-semibold sm:text-xl lg:text-2xl xl:text-3xl"
             >
-              Query:
+              {{ tutorial.language.title }}
             </span>
+            ::
             <span class="text-lg sm:text-xl lg:text-2xl xl:text-3xl">
               {{ tutorial.title }}
             </span>
@@ -156,10 +157,10 @@ export default {
             }
           })
           .then((response) => {
-            alert(response.response.data.msg)
+            alert(response.data.msg)
             this.tutorials_copy.splice(index, 1)
           })
-          .catch((error) => alert(error.response.data.msg))
+          .catch((error) => alert(error.data.msg))
       }
     },
     approveTutorial(index) {
@@ -174,10 +175,10 @@ export default {
             }
           })
           .then((response) => {
-            alert(response.response.data.msg)
+            alert(response.data.msg)
             this.tutorials_copy.splice(index, 1)
           })
-          .catch((error) => alert(error.response.data.msg))
+          .catch((error) => alert(error.data.msg))
       }
     }
   }

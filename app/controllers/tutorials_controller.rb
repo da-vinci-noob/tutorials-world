@@ -49,7 +49,10 @@ class TutorialsController < ApplicationController
 
   def approval
     if current_user.admin?
-      @tutorials = Tutorial.where(is_approved: false)
+      @tutorials =
+        Tutorial
+          .where(is_approved: false)
+          .as_json(include: { language: { only: [:title] } })
     else
       flash[:alert] = 'User not authorized'
       redirect_to root_path

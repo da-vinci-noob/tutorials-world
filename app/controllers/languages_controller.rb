@@ -32,6 +32,10 @@ class LanguagesController < ApplicationController
   end
 
   def set_language
-    @language = Language.eager_load(:tutorials).find(params[:id])
+    @language =
+      Language
+        .eager_load(:tutorials)
+        .order('tutorials.created_at DESC')
+        .find(params[:id])
   end
 end
