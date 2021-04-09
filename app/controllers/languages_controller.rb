@@ -19,6 +19,10 @@ class LanguagesController < ApplicationController
           }
         }
       )
+
+    @language_w_tutorials['tutorials'].reject! do |tutorial|
+      tutorial['is_approved'] == false
+    end
   end
 
   private

@@ -47,6 +47,31 @@ class TutorialsController < ApplicationController
     end
   end
 
+  def approval
+    if current_user.admin?
+      @tutorials = Tutorial.where(is_approved: false)
+    else
+      flash[:alert] = 'User not authorized'
+      redirect_to root_path
+    end
+  end
+
+  def approve_tutorial
+    if current_user.admin?
+      @tutorial = Tutorial.find(params[:id])
+      @tutorial.is_approved = true
+      if @tutorial.save
+        render json: { msg: 'Tutorial Approved' }, status: 200
+      else
+        render json: { msg: 'An Error Occured' }, status: 500
+      end
+    else
+      render json: { msg: 'User Not Authorized' }, status: 401
+    end
+  end
+
+  private
+
   def tutorial_params
     params.require(:tutorial).permit(:title, :body, :language_id)
   end
