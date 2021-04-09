@@ -1,11 +1,11 @@
 <% if notice %>
   <div class="p-4 text-gray-300 bg-green-600 border-l-4 border-green-800" role="alert">
-    <p class="font-bold notice"><%= notice %></p>
+    <p class="font-bold notice"><%= notice.html_safe %></p>
   </div>
 <% end %>
 
 <% if alert %>
   <div class="p-4 text-gray-300 bg-red-500 border-l-4 border-red-900" role="alert">
-    <p class="font-bold alert"><%= alert %></p>
+    <p class="font-bold alert"><%= alert.html_safe %></p>
   </div>
 <% end %>
