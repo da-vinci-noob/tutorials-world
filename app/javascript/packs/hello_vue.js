@@ -65,6 +65,9 @@ Vue.component('Homepage', Homepage)
 import ShowTutorial from './components/Tutorials/ShowTutorial.vue'
 Vue.component('ShowTutorial', ShowTutorial)
 
+import MyTutorials from './components/Tutorials/MyTutorials.vue'
+Vue.component('MyTutorials', MyTutorials)
+
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
     el: '[data-behavior="vue"]'
