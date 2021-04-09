@@ -28,12 +28,26 @@
         :key="tutorial.id"
         class="border-b border-gray-400 border-dashed"
       >
-        <span class="text-lg font-semibold sm:text-xl lg:text-2xl xl:text-3xl">
-          Query:
-        </span>
-        <span class="text-lg sm:text-xl lg:text-2xl xl:text-3xl">
-          {{ tutorial.title }}
-        </span>
+        <div class="flex flex-row items-center justify-between space-x-2">
+          <div>
+            <span
+              class="text-lg font-semibold sm:text-xl lg:text-2xl xl:text-3xl"
+            >
+              Query:
+            </span>
+            <span class="text-lg sm:text-xl lg:text-2xl xl:text-3xl">
+              {{ tutorial.title }}
+            </span>
+          </div>
+          <div>
+            <span class="text-sm text-purple-500 sm:text-sm">
+              &bull; ({{ tutorial.updated_at.split('T')[0] }})
+            </span>
+            <span class="text-sm text-purple-500 sm:text-sm whitespace-nowrap">
+              &bull; ( Author: {{ tutorial.user.name }})
+            </span>
+          </div>
+        </div>
         <p>
           <button
             :id="tutorial.id"

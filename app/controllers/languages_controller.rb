@@ -8,7 +8,17 @@ class LanguagesController < ApplicationController
 
   def show
     @language_w_tutorials =
-      @language.as_json(include: { tutorials: { methods: :isOpen } })
+      @language.as_json(
+        include: {
+          tutorials: {
+            include: {
+              user: {
+                only: [:name]
+              }
+            }
+          }
+        }
+      )
   end
 
   private
