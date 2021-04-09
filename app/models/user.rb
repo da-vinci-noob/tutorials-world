@@ -8,4 +8,5 @@ class User < ApplicationRecord
          :validatable
 
   has_many :tutorials
+  has_many :requests
 end

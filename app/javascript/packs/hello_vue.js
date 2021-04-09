@@ -71,6 +71,9 @@ Vue.component('MyTutorials', MyTutorials)
 import ApproveTutorials from './components/Tutorials/ApproveTutorials.vue'
 Vue.component('ApproveTutorials', ApproveTutorials)
 
+import NewRequest from './components/Requests/NewRequest.vue'
+Vue.component('NewRequest', NewRequest)
+
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
     el: '[data-behavior="vue"]'

@@ -6,6 +6,7 @@ Rails
     root 'home#index'
     resources :languages
     resources :tutorials
+    resources :requests, only: %i[new create]
 
     get '/approval', to: 'tutorials#approval'
     get '/approval/:id', to: 'tutorials#approve_tutorial'
