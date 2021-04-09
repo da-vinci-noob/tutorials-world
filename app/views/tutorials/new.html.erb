@@ -1,0 +1,22 @@
+<div>
+  <button
+      class="absolute top-0 left-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tl-xl rounded-br-xl"
+      onclick="window.history.back()"
+    >
+    BACK
+  </button>
+  <%= link_to  "Your Tutorials", tutorials_path, class:"absolute top-0 right-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl" %>
+  <% if current_user.admin? %>
+    <%= link_to  "Approvals", approval_path, class:"absolute mx-auto mt-1 right-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl" %>
+  <% end %>
+  <div>
+    <span
+        class="block text-2xl font-bold text-center lg:text-3xl xl:text-5xl"
+      >
+      Add New Tutorial
+    </span>
+  </div>
+  <div class="mt-10">
+    <%= render  "tutorials/form" %>
+  </div>
+</div>

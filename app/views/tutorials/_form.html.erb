@@ -1,0 +1,26 @@
+<%= form_with(model: @tutorial, html: {class: 'flex flex-col'}) do |f| %>
+
+  <div class="pt-3 mb-6 bg-gray-200 rounded">
+    <label class="block mb-2 ml-3 text-sm font-bold text-gray-700" for="email">
+      Select Language 
+    </label>
+    <%= f.collection_select :language_id, Language.order(:title),:id, :title, {prompt: "Click Here"}, {class: 'w-full px-3 pb-3 text-gray-700 transition duration-500 bg-gray-200 border-b-4 border-gray-300 rounded focus:outline-none focus:border-purple-600'} %>
+  </div>
+  <div class="pt-3 mb-6 bg-gray-200 rounded">
+    <label class="block mb-2 ml-3 text-sm font-bold text-gray-700" for="email">
+      Query 
+    </label>
+    <%= f.text_field :title, autofocus: true, class: 'w-full px-3 pb-3 text-gray-700 transition duration-500 bg-gray-200 border-b-4 border-gray-300 rounded focus:outline-none focus:border-purple-600' %>
+  </div>
+  <div class="pt-3 mb-6 bg-gray-200 rounded">
+    <label class="flex items-center justify-between mx-3 mb-2 text-sm font-bold text-gray-700" for="password">
+      <span>
+        Solution
+      </span>
+      <span class="text-xs uppercase">	&bull; (Supports Markdown)	&bull;
+      </span>
+    </label>
+    <%= f.text_area :body, class: 'w-full h-52 px-3 pb-3 text-gray-700 transition duration-500 bg-gray-200 border-b-4 border-gray-300 rounded focus:outline-none focus:border-purple-600' %>
+  </div>
+  <%= f.submit "Save Tutorial", class: 'mt-6 block py-2 font-bold text-white transition duration-200 bg-purple-600 rounded shadow-lg hover:bg-purple-700 hover:shadow-xl' %>
+<% end %>
