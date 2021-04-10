@@ -14,7 +14,15 @@
   <body class="font-sans antialiased duration-500 transform dark:bg-black">
     <div data-behavior="vue">
       <div>
-        <dark-mode-toggle></dark-mode-toggle>
+        <dark-mode-toggle>
+          <div slot="user">
+            <% if current_user %>
+              <%= link_to  "Sign Out", destroy_user_session_path, class:"px-4 py-2 bg-red-400 hover:bg-red-300 rounded-tl-xl rounded-br-xl", method: :delete %>
+            <% else %>
+              <%= link_to  "Sign in", new_user_session_path, class:"px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tl-xl rounded-br-xl" %>
+            <% end %>
+          </div>
+        </dark-mode-toggle>
       </div>
       <div class="container-block">
         <div class="relative inside-container">
