@@ -1,22 +1,22 @@
 <div>
   <button
-      class="absolute top-0 left-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tl-xl rounded-br-xl"
+      class="absolute top-0 left-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tl-xl rounded-br-xl dark:bg-green-600 dark:text-gray-800 dark:hover:bg-green-500 smooth"
       onclick="window.history.back()"
     >
     BACK
   </button>
-  <%= link_to  "Your Tutorials", tutorials_path, class:"absolute top-0 right-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl" %>
+  <%= link_to  "Your Tutorials", tutorials_path, class:"absolute top-0 right-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl dark:bg-green-600 dark:text-gray-800 dark:hover:bg-green-500 smooth" %>
   <% if current_user.admin? %>
     <div class="absolute right-0 mx-auto mt-2">
-      <%= link_to  "Requests", requests_path, class:"px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl" %>
-      <%= link_to  "Approvals", approval_path, class:"px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl" %>
+      <%= link_to  "Requests", requests_path, class:"px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl dark:bg-green-600 dark:text-gray-800 dark:hover:bg-green-500 smooth" %>
+      <%= link_to  "Approvals", approval_path, class:"px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl dark:bg-green-600 dark:text-gray-800 dark:hover:bg-green-500 smooth" %>
     </div>
   <% else %>
-    <%= link_to  "Contact", new_request_path, class:"absolute mx-auto mt-1 right-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl" %>
+    <%= link_to  "Contact", new_request_path, class:"absolute mx-auto mt-1 right-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tr-xl rounded-bl-xl dark:bg-green-600 dark:text-gray-800 dark:hover:bg-green-500 smooth" %>
   <% end %>
   <div>
     <span
-        class="block text-2xl font-bold text-center lg:text-3xl xl:text-5xl"
+        class="block text-2xl font-bold text-center lg:text-3xl xl:text-5xl dark:text-gray-300"
       >
       Add New Tutorial
     </span>

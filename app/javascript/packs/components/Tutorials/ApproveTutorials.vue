@@ -1,14 +1,16 @@
 <template>
   <div>
     <button
-      class="absolute top-0 left-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tl-xl rounded-br-xl"
+      class="absolute top-0 left-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tl-xl rounded-br-xl dark:bg-green-600 dark:text-gray-800 dark:hover:bg-green-500 smooth"
       onclick="window.history.back()"
     >
       BACK
     </button>
     <div class="flex flex-row items-center justify-between">
       <div class="w-1/4"></div>
-      <div class="text-2xl font-bold text-center lg:text-3xl xl:text-5xl">
+      <div
+        class="text-2xl font-bold text-center lg:text-3xl xl:text-5xl dark:text-gray-300"
+      >
         Approve Tutorials
       </div>
       <div class="w-1/4 text-right">
@@ -24,12 +26,14 @@
         <div class="flex flex-row items-baseline justify-between">
           <div>
             <span
-              class="text-lg font-semibold sm:text-xl lg:text-2xl xl:text-3xl"
+              class="text-lg font-semibold sm:text-xl lg:text-2xl xl:text-3xl dark:text-gray-400"
             >
               {{ tutorial.language.title }}
             </span>
             ::
-            <span class="text-lg sm:text-xl lg:text-2xl xl:text-3xl">
+            <span
+              class="text-lg sm:text-xl lg:text-2xl xl:text-3xl dark:text-gray-300"
+            >
               {{ tutorial.title }}
             </span>
             <span class="text-sm text-purple-500 sm:text-sm">
@@ -55,7 +59,7 @@
           <button
             :id="tutorial.id"
             @click.prevent="toggleStepsOpen(tutorial.id)"
-            class="text-sm text-indigo-700 focus:outline-none"
+            class="text-sm text-indigo-700 hover:opacity-80 focus:outline-none dark:text-indigo-500 smooth"
           >
             Toggle Solution
           </button>

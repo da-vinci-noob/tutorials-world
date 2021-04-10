@@ -8,7 +8,7 @@
     >
       <button
         type="button"
-        class="w-1/2 py-1 transition duration-300 rounded-md focus:outline-none"
+        class="w-1/2 py-1 ease-in rounded-md smooth focus:outline-none"
         :class="[
           darkMode
             ? 'hover:bg-white text-gray-800 bg-gray-300'
@@ -19,7 +19,7 @@
       </button>
       <button
         type="button"
-        class="w-1/2 py-1 transition duration-300 rounded-md focus:outline-none"
+        class="w-1/2 py-1 ease-out rounded-md smooth focus:outline-none"
         :class="[
           darkMode
             ? 'text-gray-200 bg-gray-700 font-semibold scale-125 hover:bg-gray-900'

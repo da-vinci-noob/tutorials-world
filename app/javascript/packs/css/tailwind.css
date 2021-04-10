@@ -9,7 +9,7 @@
 }
 
 .inside-container {
-  @apply px-8 py-10 bg-gray-300 rounded-xl
+  @apply px-8 py-10 bg-gray-300 dark:bg-gray-900 rounded-xl
 }
 
 .btn-link {
@@ -17,5 +17,9 @@
 }
 
 .btn-link-primary {
-  @apply bg-green-300 hover:bg-green-400
+  @apply smooth bg-green-300 hover:bg-green-400 dark:bg-green-600 dark:hover:bg-green-500
+}
+
+.smooth {
+  @apply duration-500 transform
 }

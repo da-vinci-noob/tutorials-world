@@ -1,12 +1,14 @@
 <template>
   <div>
     <button
-      class="absolute top-0 left-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tl-xl rounded-br-xl"
+      class="absolute top-0 left-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tl-xl rounded-br-xl dark:bg-green-600 dark:text-gray-800 dark:hover:bg-green-500 smooth"
       onclick="window.history.back()"
     >
       BACK
     </button>
-    <div class="text-2xl font-bold text-center lg:text-3xl xl:text-5xl">
+    <div
+      class="text-2xl font-bold text-center lg:text-3xl xl:text-5xl dark:text-gray-300"
+    >
       View Requests
     </div>
     <div class="mt-8">
@@ -18,11 +20,13 @@
         <div class="flex flex-row items-baseline justify-between">
           <div>
             <span
-              class="text-lg font-semibold sm:text-xl lg:text-2xl xl:text-3xl"
+              class="text-lg font-semibold sm:text-xl lg:text-2xl xl:text-3xl dark:text-gray-400"
             >
               Type:
             </span>
-            <span class="text-lg capitalize sm:text-xl lg:text-2xl xl:text-3xl">
+            <span
+              class="text-lg capitalize sm:text-xl lg:text-2xl xl:text-3xl dark:text-gray-300"
+            >
               {{ request.type_of_request }}
             </span>
           </div>
@@ -39,7 +43,7 @@
           <button
             :id="request.id"
             @click.prevent="toggleStepsOpen(request.id)"
-            class="text-sm text-indigo-700 focus:outline-none"
+            class="text-sm text-indigo-700 focus:outline-none dark:text-indigo-500 smooth"
           >
             Toggle Feedback
           </button>
@@ -77,23 +81,23 @@
         </collapse-transition>
       </div>
       <div class="mt-10">
-        <div class="mb-4 text-lg font-bold">
+        <div class="mb-4 text-lg font-bold dark:text-gray-300">
           Completed Requests
         </div>
         <div
-          v-for="(request, index) in completedRequests"
+          v-for="request in completedRequests"
           :key="request.id"
           class="border-b border-gray-400 border-dashed"
         >
           <div class="flex flex-row items-baseline justify-between">
             <div>
               <span
-                class="text-lg font-semibold sm:text-xl lg:text-2xl xl:text-3xl"
+                class="text-lg font-semibold sm:text-xl lg:text-2xl xl:text-3xl dark:text-gray-400"
               >
                 Type:
               </span>
               <span
-                class="text-lg capitalize sm:text-xl lg:text-2xl xl:text-3xl"
+                class="text-lg capitalize sm:text-xl lg:text-2xl xl:text-3xl dark:text-gray-300"
               >
                 {{ request.type_of_request }}
               </span>
@@ -111,7 +115,7 @@
             <button
               :id="request.id"
               @click.prevent="toggleStepsOpen(request.id)"
-              class="text-sm text-indigo-700 focus:outline-none"
+              class="text-sm text-indigo-700 focus:outline-none dark:text-indigo-500 smooth"
             >
               Toggle Feedback
             </button>
@@ -146,6 +150,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { CollapseTransition } from '@ivanv/vue-collapse-transition'
 import axios from 'axios'

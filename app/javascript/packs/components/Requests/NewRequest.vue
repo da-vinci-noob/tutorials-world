@@ -1,12 +1,14 @@
 <template>
   <div>
     <button
-      class="absolute top-0 left-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tl-xl rounded-br-xl"
+      class="absolute top-0 left-0 px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tl-xl rounded-br-xl dark:bg-green-600 dark:text-gray-800 dark:hover:bg-green-500 smooth"
       onclick="window.history.back()"
     >
       BACK
     </button>
-    <div class="text-2xl font-bold text-center lg:text-3xl xl:text-5xl">
+    <div
+      class="text-2xl font-bold text-center lg:text-3xl xl:text-5xl dark:text-gray-300"
+    >
       Contact Us
     </div>
     <div class="mt-8">
