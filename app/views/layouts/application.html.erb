@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="dark">
   <head>
     <title>Tutorials World</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,11 +11,14 @@
     <%= javascript_pack_tag 'hello_vue', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="font-sans antialiased">
-    <div class="container-block">
-      <div class="relative inside-container">
-        <%= render "layouts/alerts" %>
-        <div data-behavior="vue">
+  <body class="font-sans antialiased duration-500 transform dark:bg-black">
+    <div data-behavior="vue">
+      <div>
+        <dark-mode-toggle></dark-mode-toggle>
+      </div>
+      <div class="container-block">
+        <div class="relative inside-container">
+          <%= render "layouts/alerts" %>
           <%= yield %>
         </div>
       </div>

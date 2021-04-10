@@ -62,6 +62,9 @@ Vue.component('app', App)
 import Homepage from './components/Homepage.vue'
 Vue.component('Homepage', Homepage)
 
+import DarkModeToggle from './components/DarkModeToggle.vue'
+Vue.component('DarkModeToggle', DarkModeToggle)
+
 import ShowTutorial from './components/Tutorials/ShowTutorial.vue'
 Vue.component('ShowTutorial', ShowTutorial)
 
