@@ -1,4 +1,4 @@
-rails new rails_vuejs_tutorials --database=postgresql
+rails new tutorials_world --database=postgresql
 
 rails g controller Home index
 
