@@ -74,8 +74,11 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+# production:
+#   <<: *default
+#   database: tutorials_world_production
+#   username: tutorials_world
+#   password: <%= ENV['TUTORIALS_WORLD_DATABASE_PASSWORD'] %>
+
 production:
-  <<: *default
-  database: tutorials_world_production
-  username: tutorials_world
-  password: <%= ENV['TUTORIALS_WORLD_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
