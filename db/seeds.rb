@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+languages = %w[Ruby\ on\ Rails JavaScript VueJS ReactJS HTML CSS]
+
+others = %w[VSCode TailwindCSS Git]
+
+languages.each { |language| Language.create(title: language, others: false) }
+
+others.each { |other| Language.create(title: other, others: true) }

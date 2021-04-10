@@ -5,7 +5,7 @@
       <div
         class="text-2xl font-bold text-center dark:text-gray-300 lg:text-3xl xl:text-5xl"
       >
-        Tutorials
+        Welcome to Tutorials World
       </div>
       <div class="w-1/4 text-right">
         <slot name="add_new_link"></slot>
