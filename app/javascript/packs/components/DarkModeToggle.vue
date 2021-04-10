@@ -1,6 +1,5 @@
 <template>
-  <div class="flex flex-row items-center justify-end mt-2 mr-2 space-x-4">
-    <slot name="user"></slot>
+  <div>
     <div
       class="flex items-center justify-center w-32 px-2 py-1 space-x-2 rounded-md"
       :class="[darkMode ? 'bg-gray-200 ring-2 ring-green-600' : 'bg-gray-600']"

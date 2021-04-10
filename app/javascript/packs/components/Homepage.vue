@@ -8,25 +8,46 @@
         Welcome to Tutorials World
       </div>
       <div class="w-1/4 text-right">
-        <slot name="add_new_link"></slot>
+        <a
+          :href="new_tutorial_path"
+          class="inline-block px-2 py-1 text-sm text-gray-200 transform bg-indigo-600 rounded-lg smooth hover:scale-110 hover:bg-indigo-800 whitespace-nowrap"
+          >Add new</a
+        >
       </div>
     </div>
     <div>
       <h2 class="text-xl font-bold dark:text-gray-300">Languages</h2>
       <div class="mt-2">
-        <slot name="language_buttons"></slot>
+        <div class="space-y-2">
+          <a
+            v-for="language in languages"
+            :key="language.id"
+            :href="language_path.replace('replace_id', language.id)"
+            class="inline-block mr-4 btn-link btn-link-primary"
+            >{{ language.title }}</a
+          >
+        </div>
       </div>
     </div>
     <div>
       <h2 class="text-xl font-bold dark:text-gray-300">Others</h2>
       <div class="mt-2">
-        <slot name="others_buttons"></slot>
+        <div class="space-y-2">
+          <a
+            v-for="other in others"
+            :key="other.id"
+            :href="language_path.replace('replace_id', other.id)"
+            class="inline-block mr-4 btn-link btn-link-primary"
+            >{{ other.title }}</a
+          >
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
+  props: ['languages', 'others', 'language_path', 'new_tutorial_path'],
   data() {
     return {}
   },

@@ -1,17 +1,7 @@
-<homepage>
-  <div slot="language_buttons" class="space-y-2">
-    <% @languages.each do | language | %>
-      <%= link_to language.title, language_path(language), class: 'inline-block btn-link btn-link-primary mr-4' %>
-    <% end %>
-  </div>
+<homepage 
+  :languages="<%= @languages.to_json %>" 
+  :language_path="<%= language_path('replace_id').to_json %>" 
+  :others="<%= @others.to_json %>" 
+  :new_tutorial_path="<%= new_tutorial_path.to_json %>">
 
-  <div slot="others_buttons" class="space-y-2">
-    <% @others.each do | other | %>
-      <%= link_to other.title, language_path(other), class: 'inline-block btn-link btn-link-primary mr-4' %>
-    <% end %>
-  </div>
-
-  <div slot="add_new_link">
-    <%= link_to  "Add new", new_tutorial_path, class: 'inline-block px-2 py-1 text-sm text-gray-200 smooth transform bg-indigo-600 rounded-lg hover:scale-110 hover:bg-indigo-800 whitespace-nowrap' %>
-  </div>
 </homepage>
