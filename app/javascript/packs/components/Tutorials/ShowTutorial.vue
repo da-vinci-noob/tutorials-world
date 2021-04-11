@@ -63,7 +63,9 @@
           <div v-show="isOpen[tutorial.id]">
             <div class="p-2">
               <div class="px-4 py-1 bg-gray-200 rounded-2xl">
-                <slot :name="`tutorial_body_${tutorial.id}`"></slot>
+                <vue-markdown class="py-4 prose lg:prose-lg">
+                  {{ tutorial.body }}
+                </vue-markdown>
               </div>
             </div>
           </div>
@@ -74,10 +76,12 @@
 </template>
 <script>
 import { CollapseTransition } from '@ivanv/vue-collapse-transition'
+import VueMarkdown from 'vue-markdown'
 
 export default {
   components: {
-    CollapseTransition
+    CollapseTransition,
+    VueMarkdown
   },
   props: ['language'],
   data() {
