@@ -13,8 +13,7 @@ class TutorialsController < ApplicationController
     @tutorial = Tutorial.new(tutorial_params)
     @tutorial.user = current_user
     if @tutorial.save
-      flash[:notice] =
-        "Tutorial has been saved in #{Language.find(params[:tutorial][:language_id]).title}"
+      flash[:notice] = 'Tutorial will be approved soon'
     else
       flash[:alert] = @tutorial.errors.full_messages.join('<br>').html_safe
     end
