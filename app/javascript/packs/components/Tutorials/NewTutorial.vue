@@ -103,11 +103,18 @@
               Solution
             </span>
             <div>
+              <span
+                @click="isPreview = !isPreview"
+                class="px-2 py-1 text-xs text-indigo-200 uppercase bg-indigo-600 rounded-lg cursor-pointer hover:bg-indigo-800 smooth"
+              >
+                Preview
+              </span>
               <span class="text-xs uppercase">
                 &bull; (Supports Markdown) &bull;
               </span>
             </div>
           </label>
+          <div v-if="!isPreview">
             <textarea
               name="body"
               v-model="tutorial_body"
@@ -116,6 +123,15 @@
               placeholder="Enter Content"
               class="w-full px-3 pb-3 text-gray-700 transition duration-500 bg-gray-200 border-b-4 border-gray-300 rounded h-52 focus:outline-none focus:border-purple-600"
             ></textarea>
+          </div>
+          <div v-if="isPreview">
+            <div class="px-4 py-1 bg-gray-200 rounded-2xl">
+              <vue-markdown class="py-4 prose lg:prose-lg"
+                >{{ tutorial_body }}
+              </vue-markdown>
+            </div>
+          </div>
+        </div>
         <button
           class="block py-2 mt-6 font-bold text-white transition duration-200 bg-purple-600 rounded shadow-lg hover:shadow-xl focus:outline-none hover:bg-purple-700"
         >
