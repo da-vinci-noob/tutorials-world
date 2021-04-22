@@ -13,11 +13,14 @@ class TutorialsController < ApplicationController
     @tutorial = Tutorial.new(tutorial_params)
     @tutorial.user = current_user
     if @tutorial.save
-      flash[:notice] = 'Tutorial will be approved soon'
+      render json: { msg: 'Tutorial will be approved soon' }, status: 200
     else
-      flash[:alert] = @tutorial.errors.full_messages.join('<br>').html_safe
+      render json: {
+               msg: 'An Error Occured',
+               errors: @tutorial.errors.full_messages
+             },
+             status: 500
     end
-    redirect_to new_tutorial_path
   end
 
   def update

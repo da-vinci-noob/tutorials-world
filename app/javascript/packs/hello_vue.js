@@ -71,6 +71,9 @@ Vue.component('ShowTutorial', ShowTutorial)
 import MyTutorials from './components/Tutorials/MyTutorials.vue'
 Vue.component('MyTutorials', MyTutorials)
 
+import NewTutorial from './components/Tutorials/NewTutorial.vue'
+Vue.component('NewTutorial', NewTutorial)
+
 import ApproveTutorials from './components/Tutorials/ApproveTutorials.vue'
 Vue.component('ApproveTutorials', ApproveTutorials)
 
