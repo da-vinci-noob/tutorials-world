@@ -1,3 +1,7 @@
+<script setup>
+import MarkdownRenderer from '../MarkdownRenderer.vue'
+</script>
+
 <template>
   <div>
     <button
@@ -126,9 +130,7 @@
           </div>
           <div v-if="isPreview">
             <div class="px-4 py-1 bg-gray-200 rounded-2xl">
-              <vue-markdown class="py-4 prose lg:prose-lg"
-                >{{ tutorial_body }}
-              </vue-markdown>
+              <markdown-renderer :source="tutorial_body" />
             </div>
           </div>
         </div>
@@ -143,14 +145,10 @@
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown'
 import axios from 'axios'
 
 export default {
   props: ['languages', 'is_admin', 'path'],
-  components: {
-    VueMarkdown
-  },
   data() {
     return {
       isPreview: false,
