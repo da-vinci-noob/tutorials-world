@@ -1,3 +1,7 @@
+<script setup>
+import CollapseTransition from '@ivanv/vue-collapse-transition/src/CollapseTransition.vue'
+</script>
+
 <template>
   <div>
     <button
@@ -75,12 +79,10 @@
   </div>
 </template>
 <script>
-import { CollapseTransition } from '@ivanv/vue-collapse-transition'
 import VueMarkdown from 'vue-markdown'
 
 export default {
   components: {
-    CollapseTransition,
     VueMarkdown
   },
   props: ['language'],

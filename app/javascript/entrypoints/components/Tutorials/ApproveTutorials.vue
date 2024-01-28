@@ -1,3 +1,7 @@
+<script setup>
+import CollapseTransition from '@ivanv/vue-collapse-transition/src/CollapseTransition.vue'
+</script>
+
 <template>
   <div>
     <button
@@ -104,12 +108,8 @@
   </div>
 </template>
 <script>
-import { CollapseTransition } from '@ivanv/vue-collapse-transition'
 import axios from 'axios'
 export default {
-  components: {
-    CollapseTransition
-  },
   props: ['tutorials'],
   data() {
     return {
