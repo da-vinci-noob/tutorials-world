@@ -1,5 +1,43 @@
 <script setup>
+import axios from 'axios'
 import CollapseTransition from '@ivanv/vue-collapse-transition/src/CollapseTransition.vue'
+import { computed, ref } from 'vue'
+
+const props = defineProps(['requests'])
+
+const isOpen = ref({})
+
+const incompleteRequests = computed(() => {
+  return props.requests.filter((request) => request.is_completed == false)
+})
+const completedRequests = computed(() => {
+  return props.requests.filter((request) => request.is_completed == true)
+})
+
+const toggleStepsOpen = (index) => {
+  isOpen.value[index] = !isOpen.value[index]
+}
+
+const updateRequest = (index) => {
+  axios
+    .put(
+      `/requests/${incompleteRequests.value[index].id}.json`,
+      {},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute('content')
+        }
+      }
+    )
+    .then((response) => {
+      alert('Request Marked Completed')
+      window.location.reload()
+    })
+    .catch((error) => alert('An Error Occured'))
+}
 </script>
 
 <template>
@@ -154,58 +192,3 @@ import CollapseTransition from '@ivanv/vue-collapse-transition/src/CollapseTrans
     </div>
   </div>
 </template>
-
-<script>
-import axios from 'axios'
-export default {
-  props: ['requests'],
-  data() {
-    return {
-      isOpen: {},
-      requests_copy: {}
-    }
-  },
-  computed: {
-    incompleteRequests() {
-      return this.requests.filter((request) => request.is_completed == false)
-    },
-    completedRequests() {
-      return this.requests.filter((request) => request.is_completed == true)
-    }
-  },
-  created() {
-    this.requests_copy = this.requests
-    this.requests_copy.forEach((request) => {
-      this.isOpen[request.id] = false
-    })
-  },
-  methods: {
-    toggleStepsOpen(index) {
-      this.isOpen[index] = !this.isOpen[index]
-      this.$forceUpdate()
-    },
-    updateRequest(index) {
-      axios
-        .put(
-          `/requests/${this.incompleteRequests[index].id}.json`,
-          {},
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute('content')
-            }
-          }
-        )
-        .then((response) => {
-          alert('Request Marked Completed')
-          window.location.reload()
-        })
-        .catch((error) => alert('An Error Occured'))
-    }
-  }
-}
-</script>
-
-<style scoped></style>

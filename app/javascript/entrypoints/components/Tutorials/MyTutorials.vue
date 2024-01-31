@@ -1,5 +1,60 @@
 <script setup>
+import { ref } from 'vue'
+import axios from 'axios'
 import CollapseTransition from '@ivanv/vue-collapse-transition/src/CollapseTransition.vue'
+
+const props = defineProps(['tutorials'])
+const isOpen = ref({})
+const tutorials_copy = ref({})
+
+tutorials_copy.value = props.tutorials
+tutorials_copy.value.forEach((tutorial) => {
+  isOpen.value[tutorial.id] = false
+})
+
+const toggleStepsOpen = (index) => {
+  isOpen.value[index] = !isOpen.value[index]
+}
+
+const updateTutorial = (index) => {
+  axios
+    .put(
+      `/tutorials/${tutorials_copy[index].id}.json`,
+      {
+        tutorial: {
+          body: tutorials_copy[index].body
+        }
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute('content')
+        }
+      }
+    )
+    .then((response) => alert('Tutorial Updated'))
+    .catch((error) => alert('An Error Occured'))
+}
+const deleteTutorial = (index) => {
+  if (confirm('Are you sure')) {
+    axios
+      .delete(`/tutorials/${tutorials_copy[index].id}.json`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute('content')
+        }
+      })
+      .then((response) => {
+        alert('Tutorial Deleted')
+        tutorials_copy.splice(index, 1)
+      })
+      .catch((error) => alert('An Error Occured'))
+  }
+}
 </script>
 
 <template>
@@ -108,68 +163,3 @@ import CollapseTransition from '@ivanv/vue-collapse-transition/src/CollapseTrans
     </div>
   </div>
 </template>
-<script>
-import axios from 'axios'
-export default {
-  props: ['tutorials'],
-  data() {
-    return {
-      isOpen: {},
-      tutorials_copy: {}
-    }
-  },
-  created() {
-    this.tutorials_copy = this.tutorials
-    this.tutorials_copy.forEach((tutorial) => {
-      this.isOpen[tutorial.id] = false
-    })
-  },
-  methods: {
-    toggleStepsOpen(index) {
-      this.isOpen[index] = !this.isOpen[index]
-      this.$forceUpdate()
-    },
-    updateTutorial(index) {
-      axios
-        .put(
-          `/tutorials/${this.tutorials_copy[index].id}.json`,
-          {
-            tutorial: {
-              body: this.tutorials_copy[index].body
-            }
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute('content')
-            }
-          }
-        )
-        .then((response) => alert('Tutorial Updated'))
-        .catch((error) => alert('An Error Occured'))
-    },
-    deleteTutorial(index) {
-      if (confirm('Are you sure')) {
-        axios
-          .delete(`/tutorials/${this.tutorials_copy[index].id}.json`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute('content')
-            }
-          })
-          .then((response) => {
-            alert('Tutorial Deleted')
-            this.tutorials_copy.splice(index, 1)
-          })
-          .catch((error) => alert('An Error Occured'))
-      }
-    }
-  }
-}
-</script>
-
-<style scoped></style>

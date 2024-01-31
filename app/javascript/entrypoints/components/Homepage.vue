@@ -1,3 +1,7 @@
+<script setup>
+defineProps(['languages', 'others', 'language_path', 'new_tutorial_path'])
+</script>
+
 <template>
   <div class="space-y-4">
     <div class="flex flex-row items-center justify-between">
@@ -45,14 +49,3 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  props: ['languages', 'others', 'language_path', 'new_tutorial_path'],
-  data() {
-    return {}
-  },
-  methods: {}
-}
-</script>
-
-<style scoped></style>

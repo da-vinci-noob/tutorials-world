@@ -10,6 +10,7 @@ defineProps({
   }
 })
 </script>
+
 <template>
   <div class="py-4 prose lg:prose-lg" v-html="markdown.render(source)" />
 </template>

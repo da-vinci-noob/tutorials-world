@@ -1,6 +1,39 @@
 <script setup>
+import { onMounted, ref, computed } from 'vue'
 import CollapseTransition from '@ivanv/vue-collapse-transition/src/CollapseTransition.vue'
 import MarkdownRenderer from '../MarkdownRenderer.vue'
+
+const props = defineProps(['language'])
+
+const isOpen = ref({})
+const searchQuery = ref(null)
+
+onMounted(() => {
+  props.language.tutorials.forEach((tutorial) => {
+    isOpen.value[tutorial.id] = false
+  })
+})
+
+const resultQuery = computed(() => {
+  if (searchQuery.value) {
+    return props.language.tutorials.filter((item) => {
+      return searchQuery.value
+        .toLowerCase()
+        .split(' ')
+        .every(
+          (v) =>
+            item.title.toLowerCase().includes(v) ||
+            item.body.toLowerCase().includes(v)
+        )
+    })
+  } else {
+    return props.language.tutorials
+  }
+})
+
+const toggleStepsOpen = (index) => {
+  isOpen.value[index] = !isOpen.value[index]
+}
 </script>
 
 <template>
@@ -77,45 +110,3 @@ import MarkdownRenderer from '../MarkdownRenderer.vue'
     </div>
   </div>
 </template>
-<script>
-export default {
-  props: ['language'],
-  data() {
-    return {
-      isOpen: {},
-      searchQuery: null
-    }
-  },
-  created() {
-    this.language.tutorials.forEach((tutorial) => {
-      this.isOpen[tutorial.id] = false
-    })
-  },
-  computed: {
-    resultQuery() {
-      if (this.searchQuery) {
-        return this.language.tutorials.filter((item) => {
-          return this.searchQuery
-            .toLowerCase()
-            .split(' ')
-            .every(
-              (v) =>
-                item.title.toLowerCase().includes(v) ||
-                item.body.toLowerCase().includes(v)
-            )
-        })
-      } else {
-        return this.language.tutorials
-      }
-    }
-  },
-  methods: {
-    toggleStepsOpen(index) {
-      this.isOpen[index] = !this.isOpen[index]
-      this.$forceUpdate()
-    }
-  }
-}
-</script>
-
-<style scoped></style>
