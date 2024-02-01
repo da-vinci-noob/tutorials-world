@@ -1,6 +1,7 @@
 {
   "name": "rails-vuejs-tutorials",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@ivanv/vue-collapse-transition": "^1.0.2",
     "@rails/actioncable": "^6.0.0",

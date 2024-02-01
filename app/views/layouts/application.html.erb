@@ -27,7 +27,7 @@
     <div data-behavior="vue">
       <div class="flex flex-row items-center justify-end mt-2 mr-2 space-x-4">
         <% if current_user %>
-          <%= link_to  "Sign Out", destroy_user_session_path, class:"px-4 py-2 bg-red-400 hover:bg-red-300 rounded-tl-xl rounded-br-xl smooth block", method: :delete %>
+          <%= button_to  "Sign Out", destroy_user_session_path, class:"px-4 py-2 bg-red-400 hover:bg-red-300 rounded-tl-xl rounded-br-xl smooth block", method: :delete %>
         <% else %>
           <%= link_to  "Sign in", new_user_session_path, class:"px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tl-xl rounded-br-xl smooth" %>
         <% end %>

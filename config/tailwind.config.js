@@ -1,16 +1,13 @@
 const { colors } = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  purge: {
-    enabled: process.env.NODE_ENV === 'production' ? true : false,
-    content: [
-      './app/views/**/*.erb',
-      './app/javascript/app.vue',
-      './app/javascript/packs.vue',
-      './app/javascript/**/*.vue',
-      './app/javascript/*.vue'
-    ]
-  },
+  content: [
+    './app/views/**/*.erb',
+    './app/javascript/app.vue',
+    './app/javascript/packs.vue',
+    './app/javascript/**/*.vue',
+    './app/javascript/*.vue'
+  ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
