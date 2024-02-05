@@ -1,3 +1,83 @@
+<script setup>
+import axios from 'axios'
+import CollapseTransition from '@ivanv/vue-collapse-transition/src/CollapseTransition.vue'
+import { ref } from 'vue'
+
+const props = defineProps(['tutorials'])
+
+const isOpen = ref({})
+const tutorials_copy = ref({})
+
+tutorials_copy.value = props.tutorials
+tutorials_copy.value.forEach((tutorial) => {
+  isOpen.value[tutorial.id] = false
+})
+
+const toggleStepsOpen = (index) => {
+  isOpen.value[index] = !isOpen.value[index]
+}
+
+const updateTutorial = (index) => {
+  axios
+    .put(
+      `/tutorials/${tutorials_copy.value[index].id}.json`,
+      {
+        tutorial: {
+          body: tutorials_copy.value[index].body
+        }
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute('content')
+        }
+      }
+    )
+    .then((response) => alert('Tutorial Updated'))
+    .catch((error) => alert('An Error Occured'))
+}
+
+const deleteTutorial = (index) => {
+  if (confirm('Are you sure')) {
+    axios
+      .delete(`/tutorials/${tutorials_copy.value[index].id}.json`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute('content')
+        }
+      })
+      .then((response) => {
+        alert(response.data.msg)
+        tutorials_copy.value.splice(index, 1)
+      })
+      .catch((error) => alert(error.data.msg))
+  }
+}
+
+const approveTutorial = (index) => {
+  if (confirm('Approve.?')) {
+    axios
+      .get(`/approval/${tutorials_copy.value[index].id}.json`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute('content')
+        }
+      })
+      .then((response) => {
+        alert(response.data.msg)
+        tutorials_copy.value.splice(index, 1)
+      })
+      .catch((error) => alert(error.data.msg))
+  }
+}
+</script>
+
 <template>
   <div>
     <button
@@ -11,7 +91,7 @@
       <div
         class="text-2xl font-bold text-center lg:text-3xl xl:text-5xl dark:text-gray-300"
       >
-        Your Saved Tutorials
+        Approve Tutorials
       </div>
       <div class="w-1/4 text-right">
         <slot name="add_new_link"></slot>
@@ -28,8 +108,9 @@
             <span
               class="text-lg font-semibold sm:text-xl lg:text-2xl xl:text-3xl dark:text-gray-400"
             >
-              Query:
+              {{ tutorial.language.title }}
             </span>
+            ::
             <span
               class="text-lg sm:text-xl lg:text-2xl xl:text-3xl dark:text-gray-300"
             >
@@ -39,15 +120,13 @@
               &bull; ({{ tutorial.updated_at.split('T')[0] }})
             </span>
           </div>
-          <div class="flex flex-row items-center space-x-2">
-            <div>
-              <span
-                class="text-sm text-red-700 dark:text-red-500"
-                v-if="!tutorial.is_approved"
-              >
-                Not Approved
-              </span>
-            </div>
+          <div>
+            <button
+              class="px-2 py-1 text-sm text-gray-100 bg-green-700 rounded-lg"
+              @click.prevent="approveTutorial(index)"
+            >
+              Approve
+            </button>
             <button
               class="px-2 py-1 text-sm text-gray-100 bg-red-700 rounded-lg"
               @click.prevent="deleteTutorial(index)"
@@ -104,72 +183,3 @@
     </div>
   </div>
 </template>
-<script>
-import { CollapseTransition } from '@ivanv/vue-collapse-transition'
-import axios from 'axios'
-export default {
-  components: {
-    CollapseTransition
-  },
-  props: ['tutorials'],
-  data() {
-    return {
-      isOpen: {},
-      tutorials_copy: {}
-    }
-  },
-  created() {
-    this.tutorials_copy = this.tutorials
-    this.tutorials_copy.forEach((tutorial) => {
-      this.isOpen[tutorial.id] = false
-    })
-  },
-  methods: {
-    toggleStepsOpen(index) {
-      this.isOpen[index] = !this.isOpen[index]
-      this.$forceUpdate()
-    },
-    updateTutorial(index) {
-      axios
-        .put(
-          `/tutorials/${this.tutorials_copy[index].id}.json`,
-          {
-            tutorial: {
-              body: this.tutorials_copy[index].body
-            }
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute('content')
-            }
-          }
-        )
-        .then((response) => alert('Tutorial Updated'))
-        .catch((error) => alert('An Error Occured'))
-    },
-    deleteTutorial(index) {
-      if (confirm('Are you sure')) {
-        axios
-          .delete(`/tutorials/${this.tutorials_copy[index].id}.json`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute('content')
-            }
-          })
-          .then((response) => {
-            alert('Tutorial Deleted')
-            this.tutorials_copy.splice(index, 1)
-          })
-          .catch((error) => alert('An Error Occured'))
-      }
-    }
-  }
-}
-</script>
-
-<style scoped></style>

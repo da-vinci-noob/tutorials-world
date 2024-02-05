@@ -5,18 +5,29 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application' %>
-    <%= javascript_pack_tag 'hello_vue', 'data-turbolinks-track': 'reload' %>
+    <%= vite_client_tag %>
+    <%= vite_javascript_tag 'application' %>
+    <%= vite_javascript_tag 'hello_vue' %>
+    <!--
+      If using a TypeScript entrypoint file:
+        vite_typescript_tag 'application'
+
+      If using a .jsx or .tsx entrypoint, add the extension:
+        vite_javascript_tag 'application.jsx'
+
+      Visit the guide for more information: https://vite-ruby.netlify.app/guide/rails
+    -->
+
   </head>
 
   <body class="font-sans antialiased duration-500 transform dark:bg-black">
     <div data-behavior="vue">
       <div class="flex flex-row items-center justify-end mt-2 mr-2 space-x-4">
         <% if current_user %>
-          <%= link_to  "Sign Out", destroy_user_session_path, class:"px-4 py-2 bg-red-400 hover:bg-red-300 rounded-tl-xl rounded-br-xl smooth block", method: :delete %>
+          <%= button_to  "Sign Out", destroy_user_session_path, class:"px-4 py-2 bg-red-400 hover:bg-red-300 rounded-tl-xl rounded-br-xl smooth block", method: :delete %>
         <% else %>
           <%= link_to  "Sign in", new_user_session_path, class:"px-4 py-2 bg-green-400 hover:bg-green-300 rounded-tl-xl rounded-br-xl smooth" %>
         <% end %>

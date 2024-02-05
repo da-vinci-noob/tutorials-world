@@ -1,3 +1,40 @@
+<script setup>
+import axios from 'axios'
+import { ref } from 'vue'
+
+defineProps(['tutorials'])
+
+const request_type = ref(null)
+const request_body = ref(null)
+
+const saveRequest = () => {
+  axios
+    .post(
+      `/requests.json`,
+      {
+        request: {
+          type_of_request: request_type.value,
+          body: request_body.value
+        }
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute('content')
+        }
+      }
+    )
+    .then((response) => {
+      request_type.value = null
+      request_body.value = null
+      alert('Request Sent Successfully')
+    })
+    .catch((error) => alert('An Error Occured'))
+}
+</script>
+
 <template>
   <div>
     <button
@@ -54,49 +91,3 @@
     </div>
   </div>
 </template>
-<script>
-import { CollapseTransition } from '@ivanv/vue-collapse-transition'
-import axios from 'axios'
-export default {
-  components: {
-    CollapseTransition
-  },
-  props: ['tutorials'],
-  data() {
-    return {
-      request_type: null,
-      request_body: null
-    }
-  },
-  methods: {
-    saveRequest() {
-      axios
-        .post(
-          `/requests.json`,
-          {
-            request: {
-              type_of_request: this.request_type,
-              body: this.request_body
-            }
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute('content')
-            }
-          }
-        )
-        .then((response) => {
-          this.request_type = null
-          this.request_body = null
-          alert('Request Sent Successfully')
-        })
-        .catch((error) => alert('An Error Occured'))
-    }
-  }
-}
-</script>
-
-<style scoped></style>

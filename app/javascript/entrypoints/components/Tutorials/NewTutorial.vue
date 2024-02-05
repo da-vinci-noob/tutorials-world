@@ -1,3 +1,55 @@
+<script setup>
+import { ref } from 'vue'
+import MarkdownRenderer from '../MarkdownRenderer.vue'
+import axios from 'axios'
+
+defineProps(['languages', 'is_admin', 'path'])
+
+const isPreview = ref(false)
+const selected_language = ref(null)
+const tutorial_title = ref(null)
+const tutorial_body = ref(null)
+const success = ref(false)
+const response_body = ref(null)
+
+const saveTutorial = () => {
+  axios
+    .post(
+      `/tutorials.json`,
+      {
+        tutorial: {
+          title: tutorial_title.value,
+          body: tutorial_body.value,
+          language_id: selected_language.value
+        }
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute('content')
+        }
+      }
+    )
+    .then((response) => {
+      response_body.value = response.data.msg
+      success.value = true
+      reset_form()
+    })
+    .catch((error) => {
+      response_body.value = error.response.data.errors.join('<br>')
+      success.value = false
+    })
+}
+
+const reset_form = () => {
+  selected_language.value = null
+  tutorial_title.value = null
+  tutorial_body.value = null
+}
+</script>
+
 <template>
   <div>
     <button
@@ -126,9 +178,7 @@
           </div>
           <div v-if="isPreview">
             <div class="px-4 py-1 bg-gray-200 rounded-2xl">
-              <vue-markdown class="py-4 prose lg:prose-lg"
-                >{{ tutorial_body }}
-              </vue-markdown>
+              <markdown-renderer :source="tutorial_body" />
             </div>
           </div>
         </div>
@@ -141,63 +191,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import VueMarkdown from 'vue-markdown'
-import axios from 'axios'
-
-export default {
-  props: ['languages', 'is_admin', 'path'],
-  components: {
-    VueMarkdown
-  },
-  data() {
-    return {
-      isPreview: false,
-      selected_language: null,
-      tutorial_title: null,
-      tutorial_body: null,
-      success: false,
-      response_body: null
-    }
-  },
-  created() {},
-  methods: {
-    saveTutorial() {
-      axios
-        .post(
-          `/tutorials.json`,
-          {
-            tutorial: {
-              title: this.tutorial_title,
-              body: this.tutorial_body,
-              language_id: this.selected_language
-            }
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute('content')
-            }
-          }
-        )
-        .then((response) => {
-          this.response_body = response.data.msg
-          this.success = true
-          this.reset_form()
-        })
-        .catch((error) => {
-          this.response_body = error.response.data.errors.join('<br>')
-          this.success = false
-        })
-    },
-    reset_form() {
-      this.selected_language = null
-      this.tutorial_title = null
-      this.tutorial_body = null
-    }
-  }
-}
-</script>

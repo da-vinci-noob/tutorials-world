@@ -1,31 +1,26 @@
 {
   "name": "rails-vuejs-tutorials",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "@ivanv/vue-collapse-transition": "^1.0.0",
+    "@ivanv/vue-collapse-transition": "^1.0.2",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "5.2.1",
-    "@tailwindcss/typography": "^0.4.0",
+    "@vitejs/plugin-vue": "^5.0.3",
     "axios": "^0.21.1",
     "babel-runtime": "^6.26.0",
+    "markdown-it": "^14.0.0",
     "turbolinks": "^5.2.0",
-    "vue": "^2.6.12",
-    "vue-loader": "^15.9.6",
-    "vue-markdown": "^2.2.4",
-    "vue-template-compiler": "^2.6.12",
-    "vue-turbolinks": "^2.2.1"
+    "vue": "^3.4.15",
+    "vue-turbolinks": "^2.2.2"
   },
   "version": "0.1.0",
   "devDependencies": {
     "@prettier/plugin-ruby": "^1.5.5",
-    "@tailwindcss/postcss7-compat": "^2.0.4",
-    "autoprefixer": "^9",
     "chokidar": "^3.5.1",
-    "postcss": "^7",
     "prettier": "^2.2.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "webpack-dev-server": "^3.11.2"
+    "vite": "^5.0.12",
+    "vite-plugin-ruby": "^5.0.0"
   }
 }

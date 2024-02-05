@@ -1,3 +1,41 @@
+<script setup>
+import { onMounted, ref, computed } from 'vue'
+import CollapseTransition from '@ivanv/vue-collapse-transition/src/CollapseTransition.vue'
+import MarkdownRenderer from '../MarkdownRenderer.vue'
+
+const props = defineProps(['language'])
+
+const isOpen = ref({})
+const searchQuery = ref(null)
+
+onMounted(() => {
+  props.language.tutorials.forEach((tutorial) => {
+    isOpen.value[tutorial.id] = false
+  })
+})
+
+const resultQuery = computed(() => {
+  if (searchQuery.value) {
+    return props.language.tutorials.filter((item) => {
+      return searchQuery.value
+        .toLowerCase()
+        .split(' ')
+        .every(
+          (v) =>
+            item.title.toLowerCase().includes(v) ||
+            item.body.toLowerCase().includes(v)
+        )
+    })
+  } else {
+    return props.language.tutorials
+  }
+})
+
+const toggleStepsOpen = (index) => {
+  isOpen.value[index] = !isOpen.value[index]
+}
+</script>
+
 <template>
   <div>
     <button
@@ -63,9 +101,7 @@
           <div v-show="isOpen[tutorial.id]">
             <div class="p-2">
               <div class="px-4 py-1 bg-gray-200 rounded-2xl">
-                <vue-markdown class="py-4 prose lg:prose-lg">{{
-                  tutorial.body
-                }}</vue-markdown>
+                <markdown-renderer :source="tutorial.body" />
               </div>
             </div>
           </div>
@@ -74,52 +110,3 @@
     </div>
   </div>
 </template>
-<script>
-import { CollapseTransition } from '@ivanv/vue-collapse-transition'
-import VueMarkdown from 'vue-markdown'
-
-export default {
-  components: {
-    CollapseTransition,
-    VueMarkdown
-  },
-  props: ['language'],
-  data() {
-    return {
-      isOpen: {},
-      searchQuery: null
-    }
-  },
-  created() {
-    this.language.tutorials.forEach((tutorial) => {
-      this.isOpen[tutorial.id] = false
-    })
-  },
-  computed: {
-    resultQuery() {
-      if (this.searchQuery) {
-        return this.language.tutorials.filter((item) => {
-          return this.searchQuery
-            .toLowerCase()
-            .split(' ')
-            .every(
-              (v) =>
-                item.title.toLowerCase().includes(v) ||
-                item.body.toLowerCase().includes(v)
-            )
-        })
-      } else {
-        return this.language.tutorials
-      }
-    }
-  },
-  methods: {
-    toggleStepsOpen(index) {
-      this.isOpen[index] = !this.isOpen[index]
-      this.$forceUpdate()
-    }
-  }
-}
-</script>
-
-<style scoped></style>

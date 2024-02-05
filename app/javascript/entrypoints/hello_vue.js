@@ -51,40 +51,33 @@
 //
 // Then uncomment the code block below:
 
-import TurbolinksAdapter from 'vue-turbolinks'
-import Vue from 'vue/dist/vue.esm'
-
-Vue.use(TurbolinksAdapter)
+import { turbolinksAdapterMixin } from 'vue-turbolinks'
+import { createApp } from 'vue/dist/vue.esm-bundler.js'
 
 import App from '../app.vue'
-Vue.component('app', App)
-
 import Homepage from './components/Homepage.vue'
-Vue.component('Homepage', Homepage)
-
 import DarkModeToggle from './components/DarkModeToggle.vue'
-Vue.component('DarkModeToggle', DarkModeToggle)
-
 import ShowTutorial from './components/Tutorials/ShowTutorial.vue'
-Vue.component('ShowTutorial', ShowTutorial)
-
 import MyTutorials from './components/Tutorials/MyTutorials.vue'
-Vue.component('MyTutorials', MyTutorials)
-
 import NewTutorial from './components/Tutorials/NewTutorial.vue'
-Vue.component('NewTutorial', NewTutorial)
-
 import ApproveTutorials from './components/Tutorials/ApproveTutorials.vue'
-Vue.component('ApproveTutorials', ApproveTutorials)
-
 import NewRequest from './components/Requests/NewRequest.vue'
-Vue.component('NewRequest', NewRequest)
-
 import ViewRequest from './components/Requests/ViewRequest.vue'
-Vue.component('ViewRequest', ViewRequest)
 
 document.addEventListener('turbolinks:load', () => {
-  const app = new Vue({
-    el: '[data-behavior="vue"]'
+  const app = createApp({
+    components: {
+      App,
+      Homepage,
+      DarkModeToggle,
+      ShowTutorial,
+      MyTutorials,
+      NewTutorial,
+      ApproveTutorials,
+      NewRequest,
+      ViewRequest
+    },
+    mixins: [turbolinksAdapterMixin]
   })
+  app.mount('[data-behavior="vue"')
 })
