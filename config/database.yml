@@ -20,6 +20,12 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  <% if ENV["DB_HOST"] %>
+  host: <%= ENV["DB_HOST"] %>
+  username: postgres
+  password: postgres
+  <% end %>
+
 
 development:
   <<: *default
@@ -74,11 +80,8 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-# production:
-#   <<: *default
-#   database: tutorials_world_production
-#   username: tutorials_world
-#   password: <%= ENV['TUTORIALS_WORLD_DATABASE_PASSWORD'] %>
-
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  <<: *default
+  database: tutorials_world_production
+  username: tutorials_world
+  password: <%= ENV["TUTORIALS_WORLD_DATABASE_PASSWORD"] %>
