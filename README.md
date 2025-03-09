@@ -15,13 +15,19 @@ As the name of the project, the concept here used is:
 * You need to be logged in to post solution.
 * Login doesn't require any verification or anything, that's just for the name who posted and manage your posted content.
 
+<img width="1457" alt="Screenshot" src="https://github.com/user-attachments/assets/e8dda2a4-2aea-48b1-b196-54da321ac03b" />
+<img width="1438" alt="Screenshot" src="https://github.com/user-attachments/assets/0d2c0924-8e60-4f46-b18b-646b9d4a3f12" />
+
+
 ## Technologies used here:
 
 * Ruby on Rails
 * Vuejs with webpacker
+
 * TailwindCSS
 
 Solutions can be posted with markdown as the solution block supports markdown for some stylings.
+
 
 ` 
 It supports Dark mode and light mode and can be toggled with a button on the top right corner.
